@@ -12155,8 +12155,6 @@ module.exports = __webpack_require__(108);
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(7);
 
 var _react2 = _interopRequireDefault(_react);
@@ -12171,69 +12169,17 @@ var _redux = __webpack_require__(57);
 
 var _reactRouterDom = __webpack_require__(236);
 
-var _app = __webpack_require__(263);
-
-var _app2 = _interopRequireDefault(_app);
-
-var _reducers = __webpack_require__(264);
+var _reducers = __webpack_require__(263);
 
 var _reducers2 = _interopRequireDefault(_reducers);
 
+var _posts_index = __webpack_require__(264);
+
+var _posts_index2 = _interopRequireDefault(_posts_index);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 var createStoreWithMiddleware = (0, _redux.applyMiddleware)()(_redux.createStore);
-
-var Hello = function (_React$Component) {
-  _inherits(Hello, _React$Component);
-
-  function Hello() {
-    _classCallCheck(this, Hello);
-
-    return _possibleConstructorReturn(this, (Hello.__proto__ || Object.getPrototypeOf(Hello)).apply(this, arguments));
-  }
-
-  _createClass(Hello, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'Hello!'
-      );
-    }
-  }]);
-
-  return Hello;
-}(_react2.default.Component);
-
-var Goodbye = function (_React$Component2) {
-  _inherits(Goodbye, _React$Component2);
-
-  function Goodbye() {
-    _classCallCheck(this, Goodbye);
-
-    return _possibleConstructorReturn(this, (Goodbye.__proto__ || Object.getPrototypeOf(Goodbye)).apply(this, arguments));
-  }
-
-  _createClass(Goodbye, [{
-    key: 'render',
-    value: function render() {
-      return _react2.default.createElement(
-        'div',
-        null,
-        'Goodbye!'
-      );
-    }
-  }]);
-
-  return Goodbye;
-}(_react2.default.Component);
 
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
@@ -12244,8 +12190,7 @@ _reactDom2.default.render(_react2.default.createElement(
     _react2.default.createElement(
       'div',
       null,
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/hello', component: Hello }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/goodbye', component: Goodbye })
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _posts_index2.default })
     )
   )
 ), document.querySelector('.container'));
@@ -27999,6 +27944,29 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _redux = __webpack_require__(57);
+
+var rootReducer = (0, _redux.combineReducers)({
+  state: function state() {
+    var _state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    return _state;
+  }
+});
+
+exports.default = rootReducer;
+
+/***/ }),
+/* 264 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(7);
@@ -28013,57 +27981,30 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_Component) {
-  _inherits(App, _Component);
+var PostsIndex = function (_Component) {
+  _inherits(PostsIndex, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function PostsIndex() {
+    _classCallCheck(this, PostsIndex);
 
-    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (PostsIndex.__proto__ || Object.getPrototypeOf(PostsIndex)).apply(this, arguments));
   }
 
-  _createClass(App, [{
-    key: "render",
+  _createClass(PostsIndex, [{
+    key: 'render',
     value: function render() {
       return _react2.default.createElement(
-        "div",
+        'div',
         null,
-        _react2.default.createElement(
-          "h2",
-          { className: "u-text-center" },
-          "Create your own components and use them in this template."
-        )
+        'Posts index'
       );
     }
   }]);
 
-  return App;
+  return PostsIndex;
 }(_react.Component);
 
-exports.default = App;
-
-/***/ }),
-/* 264 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(57);
-
-var rootReducer = (0, _redux.combineReducers)({
-  state: function state() {
-    var _state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    return _state;
-  }
-});
-
-exports.default = rootReducer;
+exports.default = PostsIndex;
 
 /***/ })
 /******/ ]);
