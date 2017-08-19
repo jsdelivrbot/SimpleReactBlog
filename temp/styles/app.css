@@ -536,3 +536,7 @@ template {
 [hidden] {
   display: none;
 }
+
+form a {
+  margin-left: 20px;
+}
