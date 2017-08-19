@@ -58204,9 +58204,15 @@ var PostsNew = function (_Component) {
   _createClass(PostsNew, [{
     key: 'renderField',
     value: function renderField(field) {
+      var _field$meta = field.meta,
+          touched = _field$meta.touched,
+          error = _field$meta.error;
+
+      var className = 'form-group ' + (touched && error ? 'has-danger' : '');
+
       return _react2.default.createElement(
         'div',
-        { className: 'form-group' },
+        { className: className },
         _react2.default.createElement(
           'label',
           null,
@@ -58215,30 +58221,48 @@ var PostsNew = function (_Component) {
         _react2.default.createElement('input', _extends({
           className: 'form-control',
           type: 'text'
-        }, field.input))
+        }, field.input)),
+        _react2.default.createElement(
+          'div',
+          { className: 'text-help' },
+          touched ? error : ''
+        )
       );
+    }
+  }, {
+    key: 'onSubmit',
+    value: function onSubmit(values) {
+      console.log(values);
     }
   }, {
     key: 'render',
     value: function render() {
+      var handleSubmit = this.props.handleSubmit;
+
+
       return _react2.default.createElement(
         'form',
-        null,
+        { onSubmit: handleSubmit(this.onSubmit.bind(this)) },
         _react2.default.createElement(_reduxForm.Field, {
           label: 'Title',
           name: 'title',
           component: this.renderField
         }),
         _react2.default.createElement(_reduxForm.Field, {
-          label: 'Tags',
-          name: 'tags',
+          label: 'Categories',
+          name: 'categories',
           component: this.renderField
         }),
         _react2.default.createElement(_reduxForm.Field, {
           label: 'Post content',
           name: 'content',
           component: this.renderField
-        })
+        }),
+        _react2.default.createElement(
+          'button',
+          { type: 'submit', className: 'btn btn-primary' },
+          'Submit'
+        )
       );
     }
   }]);
@@ -58246,7 +58270,25 @@ var PostsNew = function (_Component) {
   return PostsNew;
 }(_react.Component);
 
+function validate(values) {
+
+  var errors = {};
+
+  if (!values.title) {
+    errors.title = "Enter a title!";
+  }
+  if (!values.categories) {
+    errors.categories = "Enter a categorie!";
+  }
+  if (!values.content) {
+    errors.content = "Enter some content!";
+  }
+
+  return errors;
+}
+
 exports.default = (0, _reduxForm.reduxForm)({
+  validate: validate,
   form: 'PostsNewForm'
 })(PostsNew);
 
