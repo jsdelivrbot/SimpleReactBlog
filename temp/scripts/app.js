@@ -6071,10 +6071,11 @@ function baseAssignValue(object, key, value) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.FETCH_POST = exports.CREATE_POST = exports.FETCH_POSTS = undefined;
+exports.DELETE_POST = exports.FETCH_POST = exports.CREATE_POST = exports.FETCH_POSTS = undefined;
 exports.fetchPosts = fetchPosts;
 exports.createPost = createPost;
 exports.fetchPost = fetchPost;
+exports.deletePost = deletePost;
 
 var _axios = __webpack_require__(506);
 
@@ -6085,6 +6086,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var FETCH_POSTS = exports.FETCH_POSTS = 'fetch_posts';
 var CREATE_POST = exports.CREATE_POST = 'create_post';
 var FETCH_POST = exports.FETCH_POST = 'fetch_post';
+var DELETE_POST = exports.DELETE_POST = 'delete_post';
 
 var ROOT_URL = 'http://reduxblog.herokuapp.com/api';
 var API_KEY = '?key=bartbrusselmans1992';
@@ -6115,6 +6117,17 @@ function fetchPost(id) {
   return {
     type: FETCH_POST,
     payload: request
+  };
+}
+
+function deletePost(id, callback) {
+  var request = _axios2.default.delete(ROOT_URL + '/posts/' + id + API_KEY).then(function () {
+    return callback();
+  });
+
+  return {
+    type: DELETE_POST,
+    payload: id
   };
 }
 
@@ -57206,6 +57219,9 @@ exports.default = function () {
 
   switch (action.type) {
 
+    case _actions.DELETE_POST:
+      return _lodash2.default.omit(state, action.payload);
+
     case _actions.FETCH_POST:
       return _extends({}, state, _defineProperty({}, action.payload.data.id, action.payload.data));
 
@@ -58395,6 +58411,17 @@ var PostsDetail = function (_Component) {
       this.props.fetchPost(id);
     }
   }, {
+    key: 'onDeleteClick',
+    value: function onDeleteClick() {
+      var _this2 = this;
+
+      var id = this.props.match.params.id;
+
+      this.props.deletePost(id, function () {
+        _this2.props.history.push('/');
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var post = this.props.post;
@@ -58415,6 +58442,14 @@ var PostsDetail = function (_Component) {
           _reactRouterDom.Link,
           { to: '/' },
           'Back to index'
+        ),
+        _react2.default.createElement(
+          'button',
+          {
+            className: 'btn btn-danger pull-xs-right',
+            onClick: this.onDeleteClick.bind(this)
+          },
+          'Delete Post'
         ),
         _react2.default.createElement(
           'h3',
@@ -58445,7 +58480,7 @@ function mapStateToProps(_ref, ownProps) {
   return { post: posts[ownProps.match.params.id] };
 }
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPost: _actions.fetchPost })(PostsDetail);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, { fetchPost: _actions.fetchPost, deletePost: _actions.deletePost })(PostsDetail);
 
 /***/ })
 /******/ ]);
